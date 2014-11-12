@@ -27,19 +27,25 @@
   <div ng-click="clearSelectedStall()" class="close">X</div>
   <h2>Selected Stall Details</h2>
   <table>
-    <tr>
+    <tr> 
       <td>Name:</td>
-      <td>{{ selectedStall.name }}</td>
+      <td ng-hide="editStall">{{ selectedStall.name }}</td>
+      <td ng-show="editStall"><input ng-model="editStall.name" /></td>
     </tr>
     <tr>
       <td>Price:</td>
-      <td> {{ selectedStall.price | currency}}</td>
+      <td ng-hide="editStall"> {{ selectedStall.price | currency }}</td>  
+      <td ng-show="editStall"><input ng-model="editStall.price" /></td>  
     </tr>
     <tr>
       <td>Description:</td>
-      <td> {{ selectedStall.description}}</td>
+      <td ng-hide="editStall"> {{ selectedStall.description}}</td>
+      <td ng-show="editStall"><textarea ng-model="editStall.description"></textarea></td>
     </tr>
   </table>
+  <button ng-hide="editStall" ng-click="setEditStall(selectedStall)">Edit Stall</button>
+  <button ng-show="editStall" ng-click="updateStall(selectedStall)">Update Stall</button>
+  <button ng-click="deleteStall(selectedStall)">Delete Stall</button>
 </section>
 <section ng-hide="selectedStall">
   <h2>Leather Lane</h2>
